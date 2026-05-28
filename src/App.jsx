@@ -81,17 +81,19 @@ QUALITY RULES:
 1. Acceptance criteria must be testable Given/When/Then statements. No aspirational language.
 2. Use MoSCoW priorities honestly — not everything is Must Have.
 3. Non-functional requirements include concrete thresholds where reasonable. Mark proposed thresholds as assumptions.
-4. User story personas must match a listed stakeholder name.
-5. Out-of-scope items are SPECIFIC adjacent capabilities not being solved.
-6. Never invent business specifics (revenue, user counts, hard deadlines) absent from the input. Mark inferences as assumptions.
+4. User story personas must match a listed stakeholder name EXACTLY. If a user story describes a role's responsibility, that role must appear in the stakeholder list.
+5. Out-of-scope items are SPECIFIC adjacent capabilities not being solved, not generic disclaimers.
+6. NO INVENTED QUANTITATIVE CLAIMS. Do not state percentages, user counts, dollar figures, durations, market sizes, or other specific numbers unless they appear in the input. When a quantitative claim would help framing, phrase it qualitatively ("the majority of users" rather than "85% of users"). The ONLY exception is non-functional requirements, where industry-standard thresholds (e.g., "page load under 3 seconds") may be proposed — but these MUST be flagged as assumptions in risksAndAssumptions.
+7. COVERAGE CHECK. Every distinct capability or feature mentioned in the input description must appear as either a functional requirement OR an explicit out-of-scope item with rationale. Do not silently drop capabilities.
+8. STAKEHOLDER FIDELITY. List every distinct stakeholder group named or strongly implied in the input. Do not collapse stakeholders with different interests, influence levels, or responsibilities — even if it means listing 5-6 groups. Composite stakeholders (e.g., "Finance/Compliance") are allowed ONLY when the input itself describes them as a single group with shared concerns.
 
-VOLUME (compact — keep each item concise):
-- 3 stakeholders
-- 4 functional requirements, exactly 1 acceptance criterion each
-- 3 non-functional requirements
-- 3 user stories
-- 3 out-of-scope items
-- 3 risks/assumptions
+VOLUME GUIDANCE (keep each item concise):
+- Stakeholders: as many as the input warrants, typically 3-6
+- Functional requirements: 4, exactly 1 acceptance criterion each
+- Non-functional requirements: 3
+- User stories: 3
+- Out-of-scope items: 3
+- Risks/assumptions: 3
 
 Return JSON only.`
 
@@ -745,7 +747,7 @@ function RequirementsDocument({ data, meta, onCopy, onDownload, copied }) {
                 </div>
               </div>
               <p style={{ fontSize: '15px', lineHeight: 1.65, color: C.ink, margin: 0 }}>
-                As a <strong style={{ color: C.accent }}>{us.persona}</strong>, I want {us.want}, so that {us.benefit}.
+                As {/^[aeiouAEIOU]/.test(us.persona) ? 'an' : 'a'} <strong style={{ color: C.accent }}>{us.persona}</strong>, I want {us.want}, so that {us.benefit}.
               </p>
             </div>
           ))}
