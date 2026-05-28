@@ -1,4 +1,4 @@
-const ALLOWED_MODEL = 'claude-sonnet-4-6'
+const ALLOWED_MODEL = 'claude-haiku-4-5-20251001'
 const MAX_TOKENS_CAP = 4000
 
 export default async (req) => {

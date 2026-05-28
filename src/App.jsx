@@ -41,7 +41,7 @@ Given a project description, produce a requirements document as STRICT JSON matc
 
 SCHEMA:
 {
-  "executiveSummary": "2-3 sentences capturing purpose, primary users, and core value",
+  "executiveSummary": "2 sentences capturing purpose and primary users",
   "stakeholders": [
     { "name": "role/group", "interests": "what they need from the system", "influence": "High" | "Medium" | "Low" }
   ],
@@ -49,7 +49,7 @@ SCHEMA:
     {
       "id": "FR-001",
       "title": "short imperative title",
-      "description": "what the system shall do, as a testable behavior",
+      "description": "what the system shall do, as a testable behavior (single sentence)",
       "priority": "Must Have" | "Should Have" | "Could Have" | "Won't Have",
       "acceptanceCriteria": ["Given... When... Then... statement"]
     }
@@ -59,7 +59,7 @@ SCHEMA:
       "id": "NFR-001",
       "category": "Performance" | "Security" | "Usability" | "Reliability" | "Scalability" | "Maintainability" | "Compliance" | "Accessibility",
       "requirement": "specific measurable constraint with threshold",
-      "rationale": "why this matters for this project"
+      "rationale": "why this matters (single sentence)"
     }
   ],
   "userStories": [
@@ -71,27 +71,27 @@ SCHEMA:
       "priority": "Must Have" | "Should Have" | "Could Have" | "Won't Have"
     }
   ],
-  "outOfScope": ["specific excluded capability with brief rationale"],
+  "outOfScope": ["specific excluded capability (one sentence)"],
   "risksAndAssumptions": [
-    { "type": "Risk" | "Assumption" | "Dependency", "description": "what it is", "mitigation": "how it's addressed or what happens if invalidated" }
+    { "type": "Risk" | "Assumption" | "Dependency", "description": "what it is (one sentence)", "mitigation": "how it's addressed (one sentence)" }
   ]
 }
 
 QUALITY RULES:
 1. Acceptance criteria must be testable Given/When/Then statements. No aspirational language.
-2. Use MoSCoW priorities honestly — not everything is Must Have. Aim for roughly 40% Must / 30% Should / 20% Could / 10% Won't.
-3. Non-functional requirements include concrete thresholds where reasonable (p95 latency, uptime %, WCAG level). When a threshold is proposed rather than given, mark it as an assumption in risksAndAssumptions.
+2. Use MoSCoW priorities honestly — not everything is Must Have.
+3. Non-functional requirements include concrete thresholds where reasonable. Mark proposed thresholds as assumptions.
 4. User story personas must match a listed stakeholder name.
-5. Out-of-scope items are SPECIFIC adjacent capabilities the project is NOT solving, not generic disclaimers.
-6. Never invent business specifics (revenue, user counts, hard deadlines, integrations) absent from the input. Mark inferences as assumptions.
+5. Out-of-scope items are SPECIFIC adjacent capabilities not being solved.
+6. Never invent business specifics (revenue, user counts, hard deadlines) absent from the input. Mark inferences as assumptions.
 
-VOLUME (concise specification — quality over quantity):
-- 3-4 stakeholders
-- 5-7 functional requirements, 1-2 acceptance criteria each
-- 3-4 non-functional requirements
-- 3-5 user stories
-- 2-4 out-of-scope items
-- 3-5 risks/assumptions
+VOLUME (compact — keep each item concise):
+- 3 stakeholders
+- 4 functional requirements, exactly 1 acceptance criterion each
+- 3 non-functional requirements
+- 3 user stories
+- 3 out-of-scope items
+- 3 risks/assumptions
 
 Return JSON only.`
 
@@ -133,7 +133,7 @@ Return the requirements document as JSON only.`
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-6',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 4000,
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPrompt }],
