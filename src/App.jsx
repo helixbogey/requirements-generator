@@ -83,17 +83,19 @@ QUALITY RULES:
 3. Non-functional requirements include concrete thresholds where reasonable. Mark proposed thresholds as assumptions.
 4. User story personas must match a listed stakeholder name EXACTLY. If a user story describes a role's responsibility, that role must appear in the stakeholder list.
 5. Out-of-scope items are SPECIFIC adjacent capabilities not being solved, not generic disclaimers.
-6. NO INVENTED QUANTITATIVE CLAIMS. Do not state percentages, user counts, dollar figures, durations, market sizes, or other specific numbers unless they appear in the input. When a quantitative claim would help framing, phrase it qualitatively ("the majority of users" rather than "85% of users"). The ONLY exception is non-functional requirements, where industry-standard thresholds (e.g., "page load under 3 seconds") may be proposed — but these MUST be flagged as assumptions in risksAndAssumptions.
-7. COVERAGE CHECK. Every distinct capability or feature mentioned in the input description must appear as either a functional requirement OR an explicit out-of-scope item with rationale. Do not silently drop capabilities.
-8. STAKEHOLDER FIDELITY. List every distinct stakeholder group named or strongly implied in the input. Do not collapse stakeholders with different interests, influence levels, or responsibilities — even if it means listing 5-6 groups. Composite stakeholders (e.g., "Finance/Compliance") are allowed ONLY when the input itself describes them as a single group with shared concerns.
+6. NO INVENTED QUANTITATIVE CLAIMS. Do not state percentages, user counts, dollar figures, durations, or other specific numbers unless they appear in the input. When a quantitative claim would help framing, phrase it qualitatively ("the majority of users" rather than "85% of users"). The only exception is NFR thresholds, which may use industry-standard values — but these MUST be flagged as assumptions in risksAndAssumptions.
+7. COVERAGE CHECK. Every distinct capability mentioned in the input must appear as either a functional requirement OR an explicit out-of-scope item with rationale. Do not silently drop capabilities.
+8. STAKEHOLDER FIDELITY (with judgment). List distinct stakeholder groups named in the input. You MAY group adjacent roles with overlapping interests (e.g., IT integration and payroll teams under "Technical Integration"), but never silently drop a named role — mention grouped constituents in the interests field. Aim for 4 entries, never more than 5.
 
-VOLUME GUIDANCE (keep each item concise):
-- Stakeholders: as many as the input warrants, typically 3-6
-- Functional requirements: 4, exactly 1 acceptance criterion each
-- Non-functional requirements: 3
+VOLUME GUIDANCE (be uncompromisingly concise — this is a specification, not a narrative):
+- Stakeholders: 3-4 (5 max)
+- Functional requirements: 4 (description: one short sentence; exactly 1 acceptance criterion)
+- Non-functional requirements: 3 (requirement: one short sentence)
 - User stories: 3
 - Out-of-scope items: 3
 - Risks/assumptions: 3
+
+Target total output: ~1500 tokens. When in doubt, cut.
 
 Return JSON only.`
 
